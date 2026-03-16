@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 export default function Login() {
+  
     const [formdata, setFormdata] = useState({
             
             email:"",
@@ -9,22 +10,26 @@ export default function Login() {
             )
             console.log(formdata)
     const handleChange=(e)=>{setFormdata({...formdata,[e.target.name]:e.target.value})}
-        
+    const [open,setopen] =useState(true)
+  if(!open) return null;    
 
   return (
     <>
       
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-900">
+      <div className="fixed inset-0 min-h-screen bg-black/60 flex items-center justify-center">
+       
+       <div className= "ml-18 relative bg-gray-900 rounded-xl shadow-lg px-6 pt-2 shadow-2xl max-w-sm w-full" >
+        <button className="absolute top-4 right-4 text-white" onClick={() => setopen(false)}>Close</button>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
             src="logo.png"
             className="mx-auto h-10 w-auto"
           />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Sign in to your account</h2>
+          <h2 className="mb-6 text-center text-2xl font-bold tracking-tight text-white">Sign in to your account</h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <form action="#" method="POST" className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium text-gray-100">
@@ -82,7 +87,7 @@ export default function Login() {
               Sign up for an account
             </a>
           </p>
-        </div>
+        </div></div>
       </div>
     </>
   )

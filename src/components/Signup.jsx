@@ -11,10 +11,14 @@ export default function Signup() {
         )
         console.log(formdata)
 const handleChange=(e)=>{setFormdata({...formdata,[e.target.name]:e.target.value})}
+const [open,setopen] =useState(true)
+if(!open) return null;
     return (
         <>
 
-            <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-900">
+            <div className="fixed inset-0 min-h-screen bg-blue flex items-center justify-center">
+                <div className="ml-18 relative bg-gray-900 rounded-xl shadow-lg px-6 pt-2 shadow-2xl max-w-sm w-full" >
+                <button className="absolute top-4 right-4 text-white" onClick={() => setopen(false)}>Close</button>
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         alt="Your Company"
@@ -92,6 +96,7 @@ const handleChange=(e)=>{setFormdata({...formdata,[e.target.name]:e.target.value
                     </p>
                 </div>
             </div>
+        </div>
         </>
     )
 }

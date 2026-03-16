@@ -6,36 +6,49 @@ import About from '../components/About'
 import Memberships from '../components/Memberships'
 import Contact from '../components/Contact'
 import { Route } from 'react-router-dom'
-import AdminPanel from '../AdminPanel/AdminPanel'
+import AdminLayout from '../AdminPanel/AdminLayout'
+import { BrowserRouter, Routes } from 'react-router-dom'
+import AddMember from '../AdminPanel/AddMember'
+import Dashboard from '../AdminPanel/Dashboard'
+import PaymentMethod from '../AdminPanel/PaymentMethod'
+import StaffMembers from '../AdminPanel/StaffMembers'
+import Trainer from '../AdminPanel/Trainer'
+import WebLayout from '../AdminPanel/WebLayout'
+import Header from '../components/Header'
 const AppRoutes = () => {
   return (
-    <div>
-      <BrowserRouter>
+    
+      
         <div className="conatainer">
-          <Header/>
+         
+          
           
           
           <Routes>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/Signup' element={<Signup/>}/>
-            <Route path='/home' element={<Home/>}/>
+           <Route path = '/' element = {<WebLayout/>}>
+            
+            <Route index element={<Home/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/memberships' element={<Memberships/>}/>
             <Route path='/contact' element={<Contact/>}/>
+            </Route>
             
-          </Routes>
-        </div>
-        <Footer/>
+          
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/Signup' element={<Signup/>}/>
+        
 
         {/* Admin routes will go here */}
-        {/*and here we are  */}
-        <Route path = '/AddMember' element={<AddMember/>}/>
-        <Route path = '/Dashboard' element={<Dashboard/>}/>
-        <Route path = '/PaymentMethods' element={<PaymentMethods/>}/>
-        <Route path = '/StaffMembers' element={<StaffMembers/>}/>
-        <Route path = '/Trainer' element={<Trainer/>}/>
-    <Route path='/admin' element={<AdminPanel/>}/>
-      </BrowserRouter>
+        
+       
+    <Route path='/' element={<AdminLayout/>}/>
+     <Route path = '/AddMember' element={<AddMember/>}/>
+        <Route path = '/Dashboard' element = {<Dashboard/>}/>
+        <Route path = '/PaymentMethods' element = {<PaymentMethod/>}/>
+        <Route path = '/StaffMembers' element = {<StaffMembers/>}/>
+        <Route path = '/Trainer' element = {<Trainer/>}/>
+    </Routes>
+      
     </div>
   )
 }

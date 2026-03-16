@@ -10,29 +10,18 @@ import Contact from './components/Contact'
 import Carosel from './components/Carosel'
 import Herosection from './components/Herosection'
 import Footer from './components/Footer'
+
 function App() {
   
 
   return (
     <>
-      <BrowserRouter>
-        <div className="conatainer">
-          <Header/>
-          
-          
-          <Routes>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/Signup' element={<Signup/>}/>
-            <Route path='/home' element={<Home/>}/>
-            <Route path='/about' element={<About/>}/>
-            <Route path='/memberships' element={<Memberships/>}/>
-            <Route path='/contact' element={<Contact/>}/>
-          </Routes>
-        </div>
-        <Footer/>
-      </BrowserRouter>
+    
+     <Header/>
+   <AppRoutes/>   
     </>
   )
 }
+import AppRoutes from './Routes/AppRoutes'
 
 export default App
