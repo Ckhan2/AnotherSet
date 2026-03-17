@@ -24,13 +24,14 @@ const AppRoutes = () => {
           
           
           
+          
           <Routes>
-           <Route path = '/' element = {<WebLayout/>}>
+           <Route path='/' element={<WebLayout/>}>
             
             <Route index element={<Home/>}/>
-            <Route path='/about' element={<About/>}/>
-            <Route path='/memberships' element={<Memberships/>}/>
-            <Route path='/contact' element={<Contact/>}/>
+            <Route path='about' element={<About/>}/>
+            <Route path='memberships' element={<Memberships/>}/>
+            <Route path='contact' element={<Contact/>}/>
             </Route>
             
           
@@ -41,12 +42,13 @@ const AppRoutes = () => {
         {/* Admin routes will go here */}
         
        
-    <Route path='/' element={<AdminLayout/>}/>
-     <Route path = '/AddMember' element={<AddMember/>}/>
-        <Route path = '/Dashboard' element = {<Dashboard/>}/>
-        <Route path = '/PaymentMethods' element = {<PaymentMethod/>}/>
-        <Route path = '/StaffMembers' element = {<StaffMembers/>}/>
-        <Route path = '/Trainer' element = {<Trainer/>}/>
+    <Route path='/admin' element={<AdminLayout/>}>
+     <Route path='AddMember' element={<AddMember/>}/>
+        <Route path='Dashboard' element={<Dashboard/>}/>
+        <Route path='PaymentMethods' element={<PaymentMethod/>}/>
+        <Route path='StaffMembers' element={<StaffMembers/>}/>
+        <Route path='Trainer' element={<Trainer/>}/>
+        </Route>
     </Routes>
       
     </div>

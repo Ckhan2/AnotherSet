@@ -13,11 +13,11 @@ import Footer from './components/Footer'
 
 function App() {
   
-
+const isAdminRoute = location.pathname.startsWith('/admin');
   return (
     <>
     
-     <Header/>
+     {!isAdminRoute && <Header/>}
    <AppRoutes/>   
     </>
   )
