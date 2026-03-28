@@ -87,7 +87,9 @@ export default function Login() {
               Sign up for an account
             </a>
           </p>
-        </div></div>
+        </div>
+
+                    </div>
       </div>
     </>
   )
