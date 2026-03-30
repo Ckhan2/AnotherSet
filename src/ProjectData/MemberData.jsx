@@ -260,3 +260,86 @@ export const memberData = [
     "paymentStatus": "Paid"
   }
 ]
+export const staffData = [
+  {
+    "memberId": 1,
+    "firstName": "George",
+    "lastName": "Washington",
+    "contact": "732-555-2001",
+    "email": "george.washington@example.com",
+    "designation": "Store Manager",
+    
+  },
+  {
+     "memberId": 2,
+    "firstName": "Teddy",
+    "lastName": "Roosevelt",
+    "contact": "732-555-2002",
+    "email": "teddy.roosevelt@example.com",
+    "designation": "Personal Trainer",
+  },
+  {
+     "memberId": 3,
+    "firstName": "Benjamin",
+    "lastName": "Franklin",
+    "contact": "732-555-2003",
+    "email": "benjamin.franklin@example.com",
+    "designation": "Front desk Associate",
+  },
+  { "memberId": 4,
+    "firstName": "Thomas",
+    "lastName": "Edison",
+    "contact": "732-555-2004",
+    "email": "thomas.edison@example.com",
+    "designation": "IT help",
+  },
+  {
+    "memberId": 5,
+    "firstName": "Abraham",
+    "lastName": "Lincoln",
+    "contact": "732-555-2005",
+    "email": "abraham.lincoln@example.com",
+    "designation": "Janitorial staff",
+  },
+  {
+    "memberId": 6,
+    "firstName": "Justin",
+    "lastName": "Trudeau",
+    "contact": "732-555-2006",
+    "email": "justin.trudeau@example.com",
+    "designation": "Janitorial staff",
+  },
+  {
+    "memberId": 7,
+    "firstName": "George",
+    "lastName": "Bush",
+    "contact": "732-555-2007",
+    "email": "george.bush@example.com",
+    "designation": "Janitorial staff",
+  },
+  {
+     "memberId": 8,
+    "firstName": "Harry",
+    "lastName": "Truman",
+    "contact": "732-555-2008",
+    "email": "harry.truman@example.com",
+    "designation": "Janitorial staff",
+  },
+  {
+     "memberId": 9,
+    "firstName": "Dwight",
+    "lastName": "Eisenhower",
+    "contact": "732-555-2009",
+    "email": "dwight.eisenhower@example.com",
+    "designation": "Manager",
+  },
+  {
+     "memberId": 10,
+    "firstName": "John",
+    "lastName": "Adams",
+    "contact": "732-555-2010",
+    "email": "john.adams@example.com",
+    "designation": "Front desk Associate",
+  },
+  
+]

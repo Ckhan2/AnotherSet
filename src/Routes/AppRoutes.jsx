@@ -11,8 +11,8 @@ import { BrowserRouter, Routes } from 'react-router-dom'
 import AddMember from '../AdminPanel/AddMember'
 import Dashboard from '../AdminPanel/Dashboard'
 import PaymentMethod from '../AdminPanel/PaymentMethod'
-import StaffMembers from '../AdminPanel/StaffMembers'
-import Trainer from '../AdminPanel/Trainer'
+import StaffMembers from '../AdminPanel/GymMembers'
+import Trainer from '../AdminPanel/StaffMembers'
 import WebLayout from '../AdminPanel/WebLayout'
 import Header from '../components/Header'
 const AppRoutes = () => {
@@ -42,12 +42,12 @@ const AppRoutes = () => {
         {/* Admin routes will go here */}
         
        
-    <Route path='/admin' element={<AdminLayout/>}>
+    <Route path='/admin/*' element={<AdminLayout/>}>
      <Route path='AddMember' element={<AddMember/>}/>
         <Route path='Dashboard' element={<Dashboard/>}/>
         <Route path='PaymentMethods' element={<PaymentMethod/>}/>
         <Route path='StaffMembers' element={<StaffMembers/>}/>
-        <Route path='Trainer' element={<Trainer/>}/>
+        <Route path='trainers' element={<Trainer/>}/>
         </Route>
     </Routes>
       

@@ -4,8 +4,8 @@ const navItems = [
     { name: 'Dashboard', path: '/admin/Dashboard' },
     { name: 'Add Member', path: '/admin/AddMember' },
     { name: 'Payment Methods', path: '/admin/PaymentMethods' },
-    { name: 'Staff Members', path: '/admin/StaffMembers' },
-    { name: 'Trainer', path: '/admin/Trainer' }
+    { name: 'Gym Members', path: '/admin/StaffMembers' },
+    { name: 'Staff Members', path: '/admin/trainers' }
 ]
 
 
