@@ -1,102 +1,150 @@
-import { useState } from "react"
-
-
+import { useState } from "react";
+import { useSignup } from "../hooks/useApi";
 
 export default function Signup() {
-    const [formdata, setFormdata] = useState({
-        name:"",
-        email:"",
-        password:""
+  const [formdata, setFormdata] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+
+  const roles = ["ADMIN", "STORE_MANAGER"];
+  const signupMutation = useSignup();
+  const [open, setOpen] = useState(true);
+
+  const handleChange = (e) => {
+    setFormdata({ ...formdata, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await signupMutation.mutateAsync(formdata);
+      alert("Signup successful!");
+    } catch (error) {
+      alert("Signup failed: " + error.message);
     }
-        )
-        console.log(formdata)
-const handleChange=(e)=>{setFormdata({...formdata,[e.target.name]:e.target.value})}
-const [open,setopen] =useState(true)
-if(!open) return null;
-    return (
-        <>
+  };
 
-            <div className="fixed inset-0 min-h-screen bg-blue flex items-center justify-center">
-                <div className="ml-18 relative bg-gray-900 rounded-xl shadow-lg px-6 pt-2 shadow-2xl max-w-sm w-full" >
-                <button className="absolute top-4 right-4 text-white" onClick={() => setopen(false)}>Close</button>
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img
-                        alt="Your Company"
-                        src="logo.png"
-                        className="mx-auto h-10 w-auto"
-                    />
-                    <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Sign up for your account</h2>
-                </div>
+  if (!open) return null;
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form action="#" method="POST" className="space-y-6">
-                        <div>
-                            <label htmlFor="email" className="block text-sm/6 font-medium text-gray-100">
-                                Name:
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    value = {formdata.name}
-                                    onChange={handleChange}
-                                    required
-                                    autoComplete="name"
-                                    className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="email" className="block text-sm/6 font-medium text-gray-100">
-                                Email address
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    value = {formdata.email}
-                                    onChange={handleChange}
-                                    required
-                                    autoComplete="email"
-                                    className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm/6 font-medium text-gray-100">
-                                    Password
-                                </label>
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-start justify-center px-4 pt-28 pb-8 overflow-y-auto">
+      <div className="relative w-full max-w-3xl bg-gray-900 rounded-3xl shadow-2xl border border-white/10 p-8 animate-[slideDown_0.4s_ease-in-out]">
 
-                            </div>
-                            <div className="mt-2">
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    value = {formdata.password}
-                                    onChange={handleChange}
-                                    required
-                                    autoComplete="current-password"
-                                    className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                                />
-                            </div>
-                        </div>
+        
+        <button
+          className="absolute top-4 right-4 text-gray-300 hover:text-white text-sm"
+          onClick={() => setOpen(false)}
+        >
+          ✕
+        </button>
 
+        
+        <div className="text-center mb-6">
+  
 
-                    </form>
+  <h2 className="text-2xl font-bold text-white">
+    Create Account
+  </h2>
 
-                    <p className="mt-10 text-center text-sm/6 text-gray-400">
-                        Already a member?{' '}
-                        <a href="/login" className="font-semibold text-indigo-400 hover:text-indigo-300">
-                            Sign in
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        </>
-    )
+  <p className="text-gray-400 text-sm mt-1">
+    Register a new staff account
+  </p>
+</div>
+
+        
+        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
+
+          
+          <div className="col-span-1">
+            <label className="text-sm text-gray-200">Full Name</label>
+            <input
+              name="name"
+              value={formdata.name}
+              onChange={handleChange}
+              required
+              placeholder="Enter full name"
+              className="w-full mt-1 px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            />
+          </div>
+
+          
+          <div className="col-span-1">
+            <label className="text-sm text-gray-200">Email</label>
+            <input
+              name="email"
+              type="email"
+              value={formdata.email}
+              onChange={handleChange}
+              required
+              placeholder="Enter email"
+              className="w-full mt-1 px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            />
+          </div>
+
+          
+          <div className="col-span-1">
+            <label className="text-sm text-gray-200">Password</label>
+            <input
+              name="password"
+              type="password"
+              value={formdata.password}
+              onChange={handleChange}
+              required
+              placeholder="Enter password"
+              className="w-full mt-1 px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            />
+          </div>
+
+          
+          <div className="col-span-1">
+            <label className="text-sm text-gray-200">Role</label>
+            <select
+              name="role"
+              value={formdata.role}
+              onChange={handleChange}
+              required
+              className="w-full mt-1 px-4 py-3 rounded-xl bg-white/10 text-white border border-white/10 focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            >
+              <option className="text-black" value="">
+                Select role
+              </option>
+              {roles.map((role) => (
+                <option className="text-black" key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          
+          <div className="col-span-2 mt-4">
+            <button
+              type="submit"
+              disabled={signupMutation.isPending}
+              className="w-full py-3 rounded-xl bg-indigo-500 text-white font-bold hover:bg-indigo-400 transition active:scale-[0.98]"
+            >
+              {signupMutation.isPending
+                ? "Creating Account..."
+                : "Sign Up"}
+            </button>
+          </div>
+        </form>
+
+        
+        <p className="mt-6 text-center text-sm text-gray-400">
+          Already a member?{" "}
+          <a
+            href="/login"
+            className="text-indigo-400 font-semibold hover:text-indigo-300"
+          >
+            Sign in
+          </a>
+        </p>
+      </div>
+    </div>
+  );
 }

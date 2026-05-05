@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink, useNavigate} from 'react-router-dom'
+import { cookieUtils } from '../utils/cookieUtils'
 const navItems = [
     { name: 'Dashboard', path: '/admin/Dashboard' },
-    { name: 'Add Member', path: '/admin/AddMember' },
-    { name: 'Payment Methods', path: '/admin/PaymentMethods' },
+    { name: 'Add Staff Member', path: '/admin/AddMember' },
+    // { name: 'Payment Methods', path: '/admin/PaymentMethods' },
     { name: 'Gym Members', path: '/admin/StaffMembers' },
     { name: 'Staff Members', path: '/admin/trainers' }
 ]
@@ -11,8 +12,17 @@ const navItems = [
 
 const SideBar = () => {
   const navigate = useNavigate();
+  const userRole = cookieUtils.getUserSession()?.role?.toUpperCase?.() || '';
+  console.log('🔍 User role:', userRole);
+  const filteredNavItems = userRole === 'ADMIN'
+    ? navItems
+    : navItems.filter((item) => item.path !== '/admin/AddMember');
 
-  const handleLogout = () => {navigate('/login');}
+  const handleLogout = () => {
+    cookieUtils.removeAuthToken();
+    cookieUtils.removeUserSession();
+    navigate('/');
+  }
 
   return (
     <aside className = "w-56 min-height-screen bg-[#273444] text-white flex flex-col">
@@ -20,7 +30,7 @@ const SideBar = () => {
         <h2 className = "text-2xl font-bold text-white">Admin Panel</h2>
       </div>
       <nav className = "flex-1 p-4 space-y-1">
-        {navItems.map((closet) => (
+        {filteredNavItems.map((closet) => (
 <NavLink
 key={closet.name}
 to={closet.path}

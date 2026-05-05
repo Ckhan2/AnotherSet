@@ -1,15 +1,41 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify";
+import { useLogin } from "../hooks/useApi";
 
 export default function Login() {
-  
+
     const [formdata, setFormdata] = useState({
-            
+
             email:"",
             password:""
         }
             )
-            console.log(formdata)
+    const navigate = useNavigate();
+    const loginMutation = useLogin();
+
     const handleChange=(e)=>{setFormdata({...formdata,[e.target.name]:e.target.value})}
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const data = await loginMutation.mutateAsync({
+          email: formdata.email,
+          password: formdata.password
+        });
+        toast.success('Login successful!');
+        const role = (
+          data?.role
+          || data?.user?.role
+          || data?.user?.jobTitle
+        )?.toUpperCase?.() || '';
+        const adminRoute = role === 'STORE_MANAGER' ? '/admin/staffMembers' : '/admin/AddMember';
+        navigate(adminRoute);
+      } catch (error) {
+        toast.error(error.message || 'An error occurred during login');
+      }
+    };
+
     const [open,setopen] =useState(true)
   if(!open) return null;    
 
@@ -30,7 +56,7 @@ export default function Login() {
         </div>
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium text-gray-100">
                 Email address
@@ -81,9 +107,9 @@ export default function Login() {
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm/6 text-gray-400">
+           <p className="mt-10 text-center text-sm/6 text-gray-400">
             {' '}
-            <a href="/Signup" className="font-semibold text-indigo-400 hover:text-indigo-300">
+             <a href="/Signup" className="font-semibold text-indigo-400 hover:text-indigo-300">
               Sign up for an account
             </a>
           </p>

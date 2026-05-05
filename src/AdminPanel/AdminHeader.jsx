@@ -8,7 +8,7 @@ const AdminHeader = () => {
             <div className = "flex items-center gap-3">
                 
                 </div>
-                <Link to='/' className="text-sm text-gray-300 hover:text-white">View Site</Link>
+                
         </div>
       
     </header>
